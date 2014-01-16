@@ -1,0 +1,91 @@
+#+TITLE: Examen
+
+* Partie théorique
+Cas pratique : déploiement d'un site
+
+- réalisé avec les technologies LAMP (mais susceptible d'évoluer)
+- avec très peu de moyens (financiers et humains)
+- pour une version \beta avec peu d'utilisateurs, mais anticipant un très
+  large succès avec de très nombreux utilisateurs.
+
+** Choix du Cloud
+Expliquer quels seraient les possibilités pour le déploiement (depuis la
+gestion complètement en interne sans aucune externalisation) et
+notamment les avantages et inconvénients du choix d'un hébergement sur
+le cloud.
+** Type de plateforme
+Pour le choix d'un déploiement sur le cloud, comparer les avantages et
+inconvénients d'un PaaS et d'un IaaS.
+** Prestataire
+Indiquez en justifiant votre choix quel(s) prestataire(s) vous
+choisiriez pour un PaaS et IaaS.
+
+* Partie pratique
+
+- Créer une clef publique ou (si c'est déjà fait) décrire la procédure pour
+  créer une clef publique.
+
+- Forker le dépôt [[https://github.com/bzg/isepscript_dst][isepscript_dst]] via votre compte github, faire un commit
+  via l'interface web (soit ajouter un fichier soit modifier un fichier) et
+  une demande de merge.
+
+- Clonez votre fork (http://github/[yourusername]/isepscript_dst) sur une
+  machine disposant de git en ligne de commande, faites une modification,
+  un commit et "pushez" votre commit sur github.
+
+# - Faire un commit sur une VM locale via la ligne de commande et envoyer un
+#   patch par mail.
+
+- Créez des entrées de blog sur votre instance WordPress OpenShift (en
+  ajoutant des images).  [Les élèves ont déjà eu instruction de faire cela
+  chez eux, pour préparer l'examen.]
+
+- Cloner l'instance WP sur votre machine virtuelle (utiliser un nouveau
+  clone si vous avez déjà cloné l'instance WP).
+
+- Dans votre clone local de WP, faire la liste de toutes les images (*jpg
+  et *png).
+
+- Dans votre clone local de WP, faire la liste de tous les fichiers qui
+  sont datés de moins d'une semaine.
+
+- Dans votre clone local de WP, décrire les permissions de fichiers pour
+  les répertoires se trouvant à la racine du dépôt (est-ce que les
+  répertoires sont en lecture seule, écriture, pour qui, etc.)
+
+- Dans votre clone local de WP, changez les permissions d'accès de tous
+  les fichiers *jpg pour qu'ils soient accessibles en lecture seule par
+  l'utilisateur, le groupe et les autres.
+
+- Créer un script (du type xxx.sh) qui vérifie que tous les fichiers d'un
+  répertoire donné ne changent pas.  (On imagine qu'on lancera ce script
+  toutes les semaines.)
+
+- Quand on lance le fichier exécutable xxx.sh, faites en sorte que ce
+  script écrive le résultat dans un autre fichier.
+
+# - Créer une tâche cron qui lance le script toutes les semaines.
+
+# - Rediriger la sortie d'erreur du script "cron'é" vers un mail.
+
+# - Rediriger la sortie standard du script "cron'é" vers un fichier.
+
+- Créer un script qui liste les fichier se terminant en ".zip" et qui les
+  archives dans un répertoire dédié.
+
+- Trouvez les fichiers pour la traduction en français de wordpress (ce sont
+  des fichiers *po et *mo, disponibles sur Internet) et utilisez curl ou
+  wget pour les télécharger et les stocker dans votre copie locale de WP.
+
+- Pour le répertoire wp-content/, faites la liste des mots de plus de trois
+  lettres les plus couramment utilisés.  La liste ne doit pas contenir de
+  doublons, et la liste doit être triée par ordre de mots les plus
+  utilisés.
+
+# - Si rhc peut être installé en local, l'installer et récupérer des logs
+#   d'une connexion web à votre instance wordpress.  Sinon, nous utiliserons
+#   un fichier de log tout prêt.
+
+- Pour les logs de votre copie locale de WP, (php/logs/), écrire un script
+  pour trouver les extensions des fichiers les plus téléchargés.  Expliquez
+  en ajoutant des commentaires dans le script comment vous vous y prenez.

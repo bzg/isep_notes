@@ -1,0 +1,395 @@
+#+TITLE: Initiation à l'administration système sous Unix-GNU/Linux
+#+COLUMNS:  %30ITEM %TODO %PRIORITY %15SCHEDULED %9Effort(Estimated Effort){:} %8Progress %8Cours %CLOCKSUM
+#+PROPERTY: Cours_ALL 1 2 3 4 5
+
+* Résumé du cours
+
+** Commandes d'aide:
+
+- --help
+- man
+- info
+- apropos
+
+** Commandes de tous les jours
+
+- ls
+- mkdir
+- less
+- echo
+- touch
+- find
+- grep
+- chmod chown chgrp
+
+** Permissions de fichiers
+
+** manipulation input / output
+
+- >
+- >>
+- <
+- |
+
+** Globbing et expression régulières
+
+- globbing
+- regular expressions
+
+** Basic scripting
+
+** ranger
+
+http://ranger.nongnu.org/
+
+* Initiation à la ligne de commande
+  SCHEDULED: <2013-04-02 mar.>
+  :PROPERTIES:
+  :Effort:   1:00
+  :Cours:    1
+  :END:
+
+** Principe général
+
+*** Vocabulaire
+
+Un terminal est une fenêtre permettant de lancer une console.
+
+Une console démarre avec une invite de commande.
+
+Une ligne de commande est une succession d'instruction entrée dans
+l'invite de commande.
+
+"Travailler en ligne de commande" signifie interagir avec le système via
+des lignes de commandes entrées dans une console attachée à un terminal.
+
+*** Syntaxe
+
+En gros, une commande est de la forme:
+
+: [commande] [switches] [fichiers]
+
+Les commandes disponibles font partie de la liste des fichiers
+exécutables que l'utilisateur a le droit d'exécuter.
+
+Les /switches/ disponibles varient en fonction de chaque commande.
+
+Les fichiers sont soit des fichiers existants, soit des fichiers créés
+et manipulés par les commandes.
+
+** Commandes de base
+
+*** ls   
+
+La commande =ls= sert à lister des répertoires et des fichiers.
+
+#+BEGIN_EXAMPLE
+~$ ls
+~$ ls -l
+~$ ls -al
+#+END_EXAMPLE
+
+*** cd   
+
+La commande =cd= sert à changer de répertoire.
+
+#+BEGIN_EXAMPLE
+~$ cd
+~$ ls
+~$ cd [un_repertoire/]
+#+END_EXAMPLE
+
+*** touch
+
+La commande =touch= permet de créer un fichier ou de changer la date
+de modification d'un fichier existant.
+
+#+BEGIN_EXAMPLE
+~$ touch nouveau_fichier_a_creer.txt
+~$ touch ancier_fichier_avec_nouvelle_date_de_modif.txt
+#+END_EXAMPLE
+
+*** TODO echo
+*** man  
+
+La commande =man= sert à accéder aux manuels installés sur le système.
+
+#+BEGIN_EXAMPLE
+~$ man
+~$ man man
+~$ man woman
+~$ man ls
+#+END_EXAMPLE
+
+Les pages de manuels sont affichées via un /pager/.
+
+*** Les /pagers/ Unix
+
+Un /pager/ est un programme permettant d'afficher un fichier.
+
+Les principaux /pagers/ sont =less=, =more= (et =most=).
+
+**** /less is more/
+
+# ([[http://www.slackbook.org/html/file-commands-pagers.html][Lien de la citation]] ci-dessous)
+
+:  "less is more, but more more than more is, so more is less less, so use
+:   more less if you want less more."  -- Joost Kremers
+
+Selon la configuration du système, le /pager/ par défaut sera =less= ou
+=more=.  Nous recommandons d'utiliser =less= qui permet de faire défiler 
+les lignes/pages vers le haut, alors que =more= ne permet que de défiler
+vers le bas.
+
+**** Raccourcis less
+
+Voici les principaux raccourcis disponibles dans =less=:
+
+| Défilement                           | Pavé       | GNU Emacs | Vim        |
+|--------------------------------------+------------+-----------+------------|
+| D'une ligne vers le bas              | <bas>      | C-n       | C-y (ou j) |
+| D'une ligne vers le haut             | <haut>     | C-p       | C-e (ou k) |
+| D'une page vers le bas               | <PageDown> | C-v       | C-d        |
+| D'une page vers le haut              | <PageUp>   | M-v       | C-u        |
+|--------------------------------------+------------+-----------+------------|
+| Recherche chaîne de caractères après |            |           | /          |
+| Recherche chaîne de caractères avant |            |           | ?          |
+
+**** /man is less/
+
+A l'intérieur d'une page de manuel, vous pouvez donc faire défiler le texte
+avec les raccourcis intuitifs (pavé flêches), ou les raccourcis utilisés
+dans les principaux éditeurs de texte (=C-n C-p C-v M-v= pour les
+raccourcis de GNU Emacs, =hjkl= pour les raccourcis de Vim).
+
+Vous pouvez chercher un chaîne de caractère avec la touche =/= (pour
+chercher dans le texte qui suit) et =?= (pour chercher dans le texte qui
+précède.)
+
+*** info 
+
+La commande =info= sert à accéder aux pages de documentation écrites en
+=Texinfo= et exportées en /info pages/.
+
+#+BEGIN_EXAMPLE
+~$ info
+~$ info emacs
+#+END_EXAMPLE
+
+C'est un /pager/ (il peut afficher n'importe quelle page), mais il est
+surtout utile pour les page aux pages de documentation.
+
+#+BEGIN_EXAMPLE
+~$ info test.txt
+#+END_EXAMPLE
+
+La commande =info= permet aussi d'afficher des pages =man=.
+
+#+BEGIN_EXAMPLE
+~$ info less
+#+END_EXAMPLE
+
+*** mkdir
+
+La commande =mkdir= permet de créer des répertoires.
+
+#+BEGIN_EXAMPLE
+~$ mkdir nouveau_répertoire
+~$ mkdir -p un/nouveau/répertoire
+#+END_EXAMPLE
+
+*** ln   
+
+La commande =ln= permet de créer des liens entre fichiers.
+
+#+BEGIN_EXAMPLE
+~$ ln -s fichier_existant.txt lien_symbolique.txt
+#+END_EXAMPLE
+
+*** Résumé
+
+| Commande | Fonction                                                    |
+|----------+-------------------------------------------------------------|
+| ls       | lister des répertoires et des fichiers.                     |
+| touch    | créer ou mettre à jour la date de modification d'un fichier |
+| echo     | Envoyer du texte vers un fichier                            |
+| less     | Afficher un fichier                                         |
+| more     | Afficher un fichier                                         |
+| man      | accéder aux manuels installés sur le système.               |
+| info     | accéder aux pages de documentation écrites en =Texinfo=.    |
+| mkdir    | Créer des répertoires.                                      |
+| ln       | Créer des liens entre fichiers.                             |
+| find     | trouver des fichiers.                                       |
+| grep     | Trouver des chaînes de caractères dans des fichiers.        |
+
+** Exercices
+
+* find et grep
+  SCHEDULED: <2013-04-02 mar.>
+  :PROPERTIES:
+  :Effort:   1:00
+  :Cours:    1
+  :END:
+
+** =find= 
+
+La commande =find= permet de trouver des fichiers.
+
+- Trouver des fichiers en fonctions de leur type
+- Trouver des fichiers en fonction de leurs attributs
+- Agir sur les fichiers retournés (=xargs=, =parallel=)
+
+** =grep=
+
+La commande =grep= permet de trouver des chaînes de caractères dans des
+fichiers.
+
+- Définition rapide des expressions régulières
+- Trouver une expression régulière simple
+- Trouver tout sauf une expression régulière
+- Chercher récursivement
+
+** Exercices
+
+- Trouver des images
+- Trouver des images récentes
+- Trouver des images récents avec un préfixe particulier
+- Pour les images trouvées, créer des vignettes
+- Pour les images trouvées, les renommer avec un comptge (voir =seq=)
+- Trouver des fichiers texte
+- Pour les fichiers texte trouvés, stocker le résultat de =wc= dans un fichier
+
+* Globbing et expressions régulières
+  SCHEDULED: <2013-04-02 mar.>
+  :PROPERTIES:
+  :Effort:   1:00
+  :Cours:    1
+  :END:
+
+** "Globbing"
+
+Voir [[http://en.wikipedia.org/wiki/Glob_(programming)]]
+
+| Task                                     | Example                                  | Unix shells  |
+|------------------------------------------+------------------------------------------+--------------|
+| Match one or zero unknown characters     | ?at matches at, Cat, cat, Bat or bat     | N/A          |
+| Match exactly one unknown character      | ?at matches Cat, cat, Bat or bat, but not at | ?            |
+| Match any number of unknown characters   | Law* matches Law, Laws, or Lawyer        | *            |
+| Match a character as part of a group of characters | [CB]at matches Cat or Bat but not cat or bat | [characters] |
+| Escape character                         | Law\* will only match Law*               | \            |
+
+** Expressions régulières
+
+- Les différents systèmes pour les expressions régulières
+
+** Exercices
+
+* Déploiement
+
+** LAMP
+** heroku / openshift / aws
+
+* Apprivoiser un éditeurs de texte
+  SCHEDULED: <2013-04-02 mar.>
+  :PROPERTIES:
+  :Effort:   2:00
+  :Cours:    1 et 2
+  :END:
+
+** GNU Emacs
+
+Introduction aux principales commandes d'Emacs.
+
+** Vim   
+
+Introduction aux principales commandes d'Emacs.
+
+** Exercices
+
+* Initiation au shell Unix (Bash et zsh)
+  SCHEDULED: <2013-04-17 mer.>
+  :PROPERTIES:
+  :Effort:   1:00
+  :Cours:    2
+  :END:
+
+** Principes généraux
+
+*** pipes
+*** xargs
+*** print0
+*** sort, uniq
+*** for
+
+*** Exemples
+
+: $ find . -name "*.bak" -type f -print | xargs /bin/rm -f
+: $ find . -name "*.bak" -print0 | xargs -0 -I file mv file ~/old.files
+
+** L'environnement
+
+*** Complétion
+
+*** Recherche
+
+: C-r
+
+*** COMMENT Aller plus loin avec zsh
+** Scripts
+** Exercices
+* Administration système
+  SCHEDULED: <2013-04-17 mer.>
+  :PROPERTIES:
+  :Effort:   2:00
+  :Cours:    2
+  :END:
+
+** Définitions générales
+
+# Quote from [[http://www.cs.uni.edu/~wallingf/blog/archives/monthly/2013-03.html#e2013-03-27T12_46_03.htm][this blog post]]
+
+: "An operating system is a collection of things that don't fit into a
+: language. There shouldn't be one." -- Dan Ingalls, 1981
+
+** Permissions Unix pour les fichiers
+
+- Principes généraux
+- =chown=
+
+** Autres propriétés des fichiers
+
+- atime
+- mtime
+- ctime
+
+# Voir http://www.unix.com/tips-tutorials/20526-mtime-ctime-atime.html
+
+** Utilisateurs et superutilisateurs
+
+- =adduser=
+- =addgroup=
+- =chgrp=
+- =chsh=
+
+** su, sudo, visudo
+** Gestion de la mémoire
+   
+*** Mémoire virtuelle
+*** Swap 
+*** Visualisation de l'usage mémoire
+
+- =top= et =htop=
+- M-x =proced= sous GNU Emacs
+
+** Hiérarchie du système de fichier
+
+*** Navigateurs de fichiers pour la console
+
+- =ranger=
+- =midnight commander=
+- =dired= (in Emacs)
+
+** Services
+*** Cron 
+** Exercices
+* Survol historique des Unix
